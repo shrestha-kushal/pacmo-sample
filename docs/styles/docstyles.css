@@ -1,0 +1,8 @@
+body {
+  background-image: url("../images/fabric_of_squares_gray.png");
+  font-family: "Proxima Nova", Arial, sans-serif;
+  color: rgb(70,70,70);
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+  word-spacing: .9px;
+}

@@ -1,0 +1,49 @@
+stages:
+  - build
+  - test
+  - deliver
+  - docs
+
+pages:
+  tags:
+    - 'shared-shell-runner'
+  stage: docs
+  script:
+    - 'chmod +x ./scripts/build-docs.sh'
+    - './scripts/build-docs.sh'
+  artifacts:
+    paths:
+      - ./public
+  dependencies:
+    - "build-conda-package"
+  only:
+    - tags
+
+build-conda-package:
+  tags:
+    - 'shared-shell-runner'
+  stage: build
+  script:
+    - 'chmod +x ./scripts/build-conda-package.sh'
+    - './scripts/build-conda-package.sh'
+  artifacts:
+    paths:
+      - ./packages
+
+test-conda-package:
+  stage: test
+  script:
+    -  echo "testing pacmo"
+  dependencies:
+    - "build-conda-package"
+
+deliver-conda-package:
+  tags:
+    - 'shared-shell-runner'
+  stage: deliver
+  script:
+    - 'chmod +x ./scripts/deliver-conda-package.sh'
+    - './scripts/deliver-conda-package.sh'
+  dependencies:
+    - "build-conda-package"
+    - "test-conda-package"

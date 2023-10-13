@@ -1,0 +1,27 @@
+package:
+  name: {{ appname }} 
+  version: {{ appversion }}
+
+source:
+  path: ../src
+
+build:
+  string: {{ appbuild }}
+
+requirements:
+  build:
+    - "python=3.7"
+  host:
+    - "python=3.7"
+    - pyyaml
+    - pyaml
+    - pdoc3
+  run:
+    - "python=3.7"
+    - pyyaml
+    - pyaml
+    - pdoc3
+
+about:
+  home: https://my-secret-host.com:8997/gitlab/group/pacmo
+  summary: Python application for computational modules orchestration
